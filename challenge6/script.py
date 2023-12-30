@@ -2,6 +2,7 @@ import base64
 from englishFreqMatchScore import englishFreqMatchScore, single_byte_xor_cryptanalysis
 import string
 from key_len import get_key_len_hamming, index_of_coindicence
+import enchant
 
 
 key_size = []

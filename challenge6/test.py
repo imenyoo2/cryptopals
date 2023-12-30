@@ -1,22 +1,19 @@
 import itertools
 from englishFreqMatchScore import englishFreqMatchScore
 from tqdm import tqdm
+import enchant
 
 a = [
-['H', 'P', 'R', 'S', 'T', 't'],
-['E', 'e'],
-['A', 'B', 'C', 'G', 'H', 'I', 'P', 'R', 'r'],
-['A', 'B', 'D', 'F', 'I', 'J', 'L', 'M', 'm'],
-['A', 'C', 'G', 'H', 'I', 'i'],
-['A', 'B', 'D', 'N', 'n'],
-['A', 'a'],
-['A', 'E', 'I', 'O', 'P', 'Q', 'R', 'T', 't'],
-['A', 'H', 'O', 'o'],
-['A', 'B', 'C', 'G', 'H', 'I', 'O', 'R', 'r']
+['B', 'C', 'D', 'H', 'I', 'N', 'n'],
+['O', 'o'],
+['A', 'D', 'H', 'I', 'i'],
+['A', 'B', 'R', 'S', 's'],
+['C', 'D', 'E', 'e']
 ]
 
 words = []
 scors = []
+d = enchant.Dict("en_US")
 
 for word in tqdm(list(itertools.product(*a))):
     txt = "".join(word)
@@ -24,7 +21,6 @@ for word in tqdm(list(itertools.product(*a))):
     words.append(txt)
     scors.append(score)
 
-max_int = max(scors)
-while max(scors) == max_int:
-    print(words.pop(scors.index(max_int)))
-    del scors[scors.index(max_int)]
+for word in tqdm(words):
+    if d.check(word):
+        print(word)
